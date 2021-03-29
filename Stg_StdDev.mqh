@@ -16,7 +16,7 @@ INPUT int StdDev_PriceStopMethod = 0;                                 // Price s
 INPUT float StdDev_PriceStopLevel = 0;                                // Price stop level
 INPUT int StdDev_TickFilterMethod = 1;                                // Tick filter method
 INPUT float StdDev_MaxSpread = 4.0;                                   // Max spread to trade (pips)
-INPUT int StdDev_Shift = 0;                                           // Shift
+INPUT short StdDev_Shift = 0;                                         // Shift
 INPUT int StdDev_OrderCloseTime = -20;                                // Order close time in mins (>0) or bars (<0)
 INPUT string __StdDev_Indi_StdDev_Parameters__ =
     "-- StdDev strategy: StdDev indicator params --";                     // >>> StdDev strategy: StdDev indicator <<<
