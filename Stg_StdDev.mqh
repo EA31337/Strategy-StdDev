@@ -68,7 +68,7 @@ struct Stg_StdDev_Params : StgParams {
 
 class Stg_StdDev : public Strategy {
  public:
-  Stg_StdDev(StgParams &_params, string _name) : Strategy(_params, _name) {}
+  Stg_StdDev(StgParams &_params, Trade *_trade = NULL, string _name = "") : Strategy(_params, _trade, _name) {}
 
   static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL, long _magic_no = NULL, ENUM_LOG_LEVEL _log_level = V_INFO) {
     // Initialize strategy initial values.
@@ -83,12 +83,9 @@ class Stg_StdDev : public Strategy {
     // Initialize indicator.
     StdDevParams stddev_params(_indi_params);
     _stg_params.SetIndicator(new Indi_StdDev(_indi_params));
-    // Initialize strategy parameters.
-    _stg_params.GetLog().SetLevel(_log_level);
-    _stg_params.SetMagicNo(_magic_no);
-    _stg_params.SetTf(_tf, _Symbol);
-    // Initialize strategy instance.
-    Strategy *_strat = new Stg_StdDev(_stg_params, "StdDev");
+    // Initialize Strategy instance.
+    TradeParams _tparams(_magic_no, _log_level);
+    Strategy *_strat = new Stg_StdDev(_stg_params, new Trade(new Chart(_tf, _Symbol)), "StdDev");
     return _strat;
   }
 
