@@ -51,7 +51,7 @@ struct Stg_StdDev_Params : StgParams {
 
   // Struct constructors.
   Stg_StdDev_Params(StdDevParams &_iparams, StgParams &_sparams)
-      : iparams(indi_stddev_defaults, _iparams.tf), sparams(stg_stddev_defaults) {
+      : iparams(indi_stddev_defaults, _iparams.tf.GetTf()), sparams(stg_stddev_defaults) {
     iparams = _iparams;
     sparams = _sparams;
   }
