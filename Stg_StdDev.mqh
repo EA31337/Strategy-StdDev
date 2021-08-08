@@ -11,6 +11,7 @@ INPUT float StdDev_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int StdDev_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT int StdDev_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int StdDev_SignalCloseMethod = 2;        // Signal close method (-127-127)
+INPUT int StdDev_SignalCloseFilter = 0;        // Signal close filter (-127-127)
 INPUT float StdDev_SignalCloseLevel = 0.0f;    // Signal close level
 INPUT int StdDev_PriceStopMethod = 1;          // Price stop method
 INPUT float StdDev_PriceStopLevel = 0;         // Price stop level
@@ -38,9 +39,9 @@ struct Indi_StdDev_Params_Defaults : StdDevParams {
 struct Stg_StdDev_Params_Defaults : StgParams {
   Stg_StdDev_Params_Defaults()
       : StgParams(::StdDev_SignalOpenMethod, ::StdDev_SignalOpenFilterMethod, ::StdDev_SignalOpenLevel,
-                  ::StdDev_SignalOpenBoostMethod, ::StdDev_SignalCloseMethod, ::StdDev_SignalCloseLevel,
-                  ::StdDev_PriceStopMethod, ::StdDev_PriceStopLevel, ::StdDev_TickFilterMethod, ::StdDev_MaxSpread,
-                  ::StdDev_Shift, ::StdDev_OrderCloseTime) {}
+                  ::StdDev_SignalOpenBoostMethod, ::StdDev_SignalCloseMethod, ::StdDev_SignalCloseFilter,
+                  ::StdDev_SignalCloseLevel, ::StdDev_PriceStopMethod, ::StdDev_PriceStopLevel,
+                  ::StdDev_TickFilterMethod, ::StdDev_MaxSpread, ::StdDev_Shift, ::StdDev_OrderCloseTime) {}
 } stg_stddev_defaults;
 
 // Struct to define strategy parameters to override.
