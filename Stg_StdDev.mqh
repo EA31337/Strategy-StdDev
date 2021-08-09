@@ -9,6 +9,7 @@ INPUT float StdDev_LotSize = 0;                // Lot size
 INPUT int StdDev_SignalOpenMethod = 2;         // Signal open method (-127-127)
 INPUT float StdDev_SignalOpenLevel = 0.0f;     // Signal open level
 INPUT int StdDev_SignalOpenFilterMethod = 32;  // Signal open filter method
+INPUT int StdDev_SignalOpenFilterTime = 6;     // Signal open filter time
 INPUT int StdDev_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int StdDev_SignalCloseMethod = 2;        // Signal close method (-127-127)
 INPUT int StdDev_SignalCloseFilter = 0;        // Signal close filter (-127-127)
@@ -47,6 +48,7 @@ struct Stg_StdDev_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCL, StdDev_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, StdDev_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, StdDev_OrderCloseTime);
+    Set(STRAT_PARAM_SOFT, StdDev_SignalOpenFilterTime);
   }
 } stg_stddev_defaults;
 
