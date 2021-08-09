@@ -19,7 +19,7 @@ struct Stg_StdDev_Params_{{ Timeframe }} : StgParams {
   Stg_StdDev_Params_{{ Timeframe }}() : StgParams(stg_stddev_defaults) {
     lot_size = {{ StdDev_LotSize | default(0) }};
     signal_open_method = {{ StdDev_SignalOpenMethod | default(0) }};
-    signal_open_filter = {{ StdDev_SignalOpenFilterMethod | default(1) }};
+    signal_open_filter_method = {{ StdDev_SignalOpenFilterMethod | default(1) }};
     signal_open_level = (float){{ StdDev_SignalOpenLevel | default(0) }};
     signal_open_boost = {{ StdDev_SignalOpenBoostMethod | default(0) }};
     signal_close_method = {{ StdDev_SignalCloseMethod | default(0) }};
