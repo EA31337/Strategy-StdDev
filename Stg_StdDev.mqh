@@ -6,28 +6,28 @@
 // User input params.
 INPUT_GROUP("StdDev strategy: strategy params");
 INPUT float StdDev_LotSize = 0;                // Lot size
-INPUT int StdDev_SignalOpenMethod = 2;         // Signal open method (-127-127)
-INPUT float StdDev_SignalOpenLevel = 0.0f;     // Signal open level
+INPUT int StdDev_SignalOpenMethod = 10;        // Signal open method (-127-127)
+INPUT float StdDev_SignalOpenLevel = 28.0f;    // Signal open level
 INPUT int StdDev_SignalOpenFilterMethod = 32;  // Signal open filter method
-INPUT int StdDev_SignalOpenFilterTime = 6;     // Signal open filter time
+INPUT int StdDev_SignalOpenFilterTime = 8;     // Signal open filter time
 INPUT int StdDev_SignalOpenBoostMethod = 0;    // Signal open boost method
-INPUT int StdDev_SignalCloseMethod = 2;        // Signal close method (-127-127)
-INPUT int StdDev_SignalCloseFilter = 0;        // Signal close filter (-127-127)
-INPUT float StdDev_SignalCloseLevel = 0.0f;    // Signal close level
-INPUT int StdDev_PriceStopMethod = 1;          // Price stop method
+INPUT int StdDev_SignalCloseMethod = 0;        // Signal close method (-127-127)
+INPUT int StdDev_SignalCloseFilter = 32;       // Signal close filter (-127-127)
+INPUT float StdDev_SignalCloseLevel = 28.0f;   // Signal close level
+INPUT int StdDev_PriceStopMethod = 1;          // Price stop method (0-127)
 INPUT float StdDev_PriceStopLevel = 0;         // Price stop level
 INPUT int StdDev_TickFilterMethod = 1;         // Tick filter method
 INPUT float StdDev_MaxSpread = 4.0;            // Max spread to trade (pips)
 INPUT short StdDev_Shift = 0;                  // Shift
 INPUT float StdDev_OrderCloseLoss = 0;         // Order close loss
 INPUT float StdDev_OrderCloseProfit = 0;       // Order close profit
-INPUT int StdDev_OrderCloseTime = -20;         // Order close time in mins (>0) or bars (<0)
+INPUT int StdDev_OrderCloseTime = -30;         // Order close time in mins (>0) or bars (<0)
 INPUT_GROUP("StdDev strategy: StdDev indicator params");
-INPUT int StdDev_Indi_StdDev_MA_Period = 10;                              // Period
-INPUT int StdDev_Indi_StdDev_MA_Shift = 0;                                // MA Shift
-INPUT ENUM_MA_METHOD StdDev_Indi_StdDev_MA_Method = (ENUM_MA_METHOD)1;    // MA Method
-INPUT ENUM_APPLIED_PRICE StdDev_Indi_StdDev_Applied_Price = PRICE_CLOSE;  // Applied Price
-INPUT int StdDev_Indi_StdDev_Shift = 0;                                   // Shift
+INPUT int StdDev_Indi_StdDev_MA_Period = 24;                                 // Period
+INPUT int StdDev_Indi_StdDev_MA_Shift = 0;                                   // MA Shift
+INPUT ENUM_MA_METHOD StdDev_Indi_StdDev_MA_Method = (ENUM_MA_METHOD)3;       // MA Method
+INPUT ENUM_APPLIED_PRICE StdDev_Indi_StdDev_Applied_Price = PRICE_WEIGHTED;  // Applied Price
+INPUT int StdDev_Indi_StdDev_Shift = 0;                                      // Shift
 
 // Structs.
 
@@ -104,7 +104,8 @@ class Stg_StdDev : public Strategy {
    */
   bool SignalOpen(ENUM_ORDER_TYPE _cmd, int _method = 0, float _level = 0.0f, int _shift = 0) {
     Indi_StdDev *_indi = GetIndicator();
-    bool _result = _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID);
+    bool _result =
+        _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) && _indi.GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 2);
     if (!_result) {
       // Returns false when indicator data is not valid.
       return false;
