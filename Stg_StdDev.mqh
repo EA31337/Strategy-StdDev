@@ -45,6 +45,7 @@ struct Stg_StdDev_Params_Defaults : StgParams {
                   ::StdDev_SignalOpenBoostMethod, ::StdDev_SignalCloseMethod, ::StdDev_SignalCloseFilter,
                   ::StdDev_SignalCloseLevel, ::StdDev_PriceStopMethod, ::StdDev_PriceStopLevel,
                   ::StdDev_TickFilterMethod, ::StdDev_MaxSpread, ::StdDev_Shift) {
+    Set(STRAT_PARAM_LS, StdDev_LotSize);
     Set(STRAT_PARAM_OCL, StdDev_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, StdDev_OrderCloseProfit);
     Set(STRAT_PARAM_OCT, StdDev_OrderCloseTime);
