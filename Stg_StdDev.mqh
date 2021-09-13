@@ -36,7 +36,7 @@ struct Indi_StdDev_Params_Defaults : StdDevParams {
   Indi_StdDev_Params_Defaults()
       : StdDevParams(::StdDev_Indi_StdDev_MA_Period, ::StdDev_Indi_StdDev_MA_Shift, ::StdDev_Indi_StdDev_MA_Method,
                      ::StdDev_Indi_StdDev_Applied_Price, ::StdDev_Indi_StdDev_Shift) {}
-} indi_stddev_defaults;
+};
 
 // Defines struct with default user strategy values.
 struct Stg_StdDev_Params_Defaults : StgParams {
@@ -51,7 +51,7 @@ struct Stg_StdDev_Params_Defaults : StgParams {
     Set(STRAT_PARAM_OCT, StdDev_OrderCloseTime);
     Set(STRAT_PARAM_SOFT, StdDev_SignalOpenFilterTime);
   }
-} stg_stddev_defaults;
+};
 
 #ifdef __config__
 // Loads pair specific param values.
@@ -71,7 +71,9 @@ class Stg_StdDev : public Strategy {
 
   static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL) {
     // Initialize strategy initial values.
+    Indi_StdDev_Params_Defaults indi_stddev_defaults;
     StdDevParams _indi_params(indi_stddev_defaults, _tf);
+    Stg_StdDev_Params_Defaults stg_stddev_defaults;
     StgParams _stg_params(stg_stddev_defaults);
 #ifdef __config__
     SetParamsByTf<StdDevParams>(_indi_params, _tf, indi_stddev_m1, indi_stddev_m5, indi_stddev_m15, indi_stddev_m30,
