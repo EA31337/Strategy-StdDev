@@ -53,19 +53,6 @@ struct Stg_StdDev_Params_Defaults : StgParams {
   }
 } stg_stddev_defaults;
 
-// Struct to define strategy parameters to override.
-struct Stg_StdDev_Params : StgParams {
-  StdDevParams iparams;
-  StgParams sparams;
-
-  // Struct constructors.
-  Stg_StdDev_Params(StdDevParams &_iparams, StgParams &_sparams)
-      : iparams(indi_stddev_defaults, _iparams.tf.GetTf()), sparams(stg_stddev_defaults) {
-    iparams = _iparams;
-    sparams = _sparams;
-  }
-};
-
 #ifdef __config__
 // Loads pair specific param values.
 #include "config/H1.h"
