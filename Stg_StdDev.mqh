@@ -82,11 +82,11 @@ class Stg_StdDev : public Strategy {
                              stg_stddev_h1, stg_stddev_h4, stg_stddev_h8);
 #endif
     // Initialize indicator.
-    _stg_params.SetIndicator(new Indi_StdDev(_indi_params));
     // Initialize Strategy instance.
     ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams;
     Strategy *_strat = new Stg_StdDev(_stg_params, _tparams, _cparams, "StdDev");
+    _strat.SetIndicator(new Indi_StdDev(_indi_params));
     return _strat;
   }
 
