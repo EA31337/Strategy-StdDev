@@ -4,8 +4,8 @@
  */
 
 // Defines indicator's parameter values for the given pair symbol and timeframe.
-struct Indi_StdDev_Params_M5 : StdDevParams {
-  Indi_StdDev_Params_M5() : StdDevParams(indi_stddev_defaults, PERIOD_M5) {
+struct Indi_StdDev_Params_M5 : IndiStdDevParams {
+  Indi_StdDev_Params_M5() : IndiStdDevParams(indi_stddev_defaults, PERIOD_M5) {
     applied_price = (ENUM_APPLIED_PRICE)0;
     ma_method = (ENUM_MA_METHOD)0;
     ma_period = 14;

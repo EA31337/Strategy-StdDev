@@ -32,10 +32,10 @@ INPUT int StdDev_Indi_StdDev_Shift = 0;                                      // 
 // Structs.
 
 // Defines struct with default user indicator values.
-struct Indi_StdDev_Params_Defaults : StdDevParams {
+struct Indi_StdDev_Params_Defaults : IndiStdDevParams {
   Indi_StdDev_Params_Defaults()
-      : StdDevParams(::StdDev_Indi_StdDev_MA_Period, ::StdDev_Indi_StdDev_MA_Shift, ::StdDev_Indi_StdDev_MA_Method,
-                     ::StdDev_Indi_StdDev_Applied_Price, ::StdDev_Indi_StdDev_Shift) {}
+      : IndiStdDevParams(::StdDev_Indi_StdDev_MA_Period, ::StdDev_Indi_StdDev_MA_Shift, ::StdDev_Indi_StdDev_MA_Method,
+                         ::StdDev_Indi_StdDev_Applied_Price, ::StdDev_Indi_StdDev_Shift) {}
 };
 
 // Defines struct with default user strategy values.
@@ -72,12 +72,12 @@ class Stg_StdDev : public Strategy {
   static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL) {
     // Initialize strategy initial values.
     Indi_StdDev_Params_Defaults indi_stddev_defaults;
-    StdDevParams _indi_params(indi_stddev_defaults, _tf);
+    IndiStdDevParams _indi_params(indi_stddev_defaults, _tf);
     Stg_StdDev_Params_Defaults stg_stddev_defaults;
     StgParams _stg_params(stg_stddev_defaults);
 #ifdef __config__
-    SetParamsByTf<StdDevParams>(_indi_params, _tf, indi_stddev_m1, indi_stddev_m5, indi_stddev_m15, indi_stddev_m30,
-                                indi_stddev_h1, indi_stddev_h4, indi_stddev_h8);
+    SetParamsByTf<IndiStdDevParams>(_indi_params, _tf, indi_stddev_m1, indi_stddev_m5, indi_stddev_m15, indi_stddev_m30,
+                                    indi_stddev_h1, indi_stddev_h4, indi_stddev_h8);
     SetParamsByTf<StgParams>(_stg_params, _tf, stg_stddev_m1, stg_stddev_m5, stg_stddev_m15, stg_stddev_m30,
                              stg_stddev_h1, stg_stddev_h4, stg_stddev_h8);
 #endif
