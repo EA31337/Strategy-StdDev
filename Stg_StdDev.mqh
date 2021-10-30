@@ -71,13 +71,9 @@ class Stg_StdDev : public Strategy {
 
   static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL) {
     // Initialize strategy initial values.
-    Indi_StdDev_Params_Defaults indi_stddev_defaults;
-    IndiStdDevParams _indi_params(indi_stddev_defaults, _tf);
     Stg_StdDev_Params_Defaults stg_stddev_defaults;
     StgParams _stg_params(stg_stddev_defaults);
 #ifdef __config__
-    SetParamsByTf<IndiStdDevParams>(_indi_params, _tf, indi_stddev_m1, indi_stddev_m5, indi_stddev_m15, indi_stddev_m30,
-                                    indi_stddev_h1, indi_stddev_h4, indi_stddev_h8);
     SetParamsByTf<StgParams>(_stg_params, _tf, stg_stddev_m1, stg_stddev_m5, stg_stddev_m15, stg_stddev_m30,
                              stg_stddev_h1, stg_stddev_h4, stg_stddev_h8);
 #endif
@@ -86,8 +82,16 @@ class Stg_StdDev : public Strategy {
     ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams;
     Strategy *_strat = new Stg_StdDev(_stg_params, _tparams, _cparams, "StdDev");
-    _strat.SetIndicator(new Indi_StdDev(_indi_params));
     return _strat;
+  }
+
+  /**
+   * Event on strategy's init.
+   */
+  void OnInit() {
+    Indi_StdDev_Params_Defaults indi_stddev_defaults;
+    IndiStdDevParams _indi_params(indi_stddev_defaults, Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
+    SetIndicator(new Indi_StdDev(_indi_params));
   }
 
   /**
