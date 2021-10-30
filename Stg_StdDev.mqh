@@ -31,13 +31,6 @@ INPUT int StdDev_Indi_StdDev_Shift = 0;                                      // 
 
 // Structs.
 
-// Defines struct with default user indicator values.
-struct Indi_StdDev_Params_Defaults : IndiStdDevParams {
-  Indi_StdDev_Params_Defaults()
-      : IndiStdDevParams(::StdDev_Indi_StdDev_MA_Period, ::StdDev_Indi_StdDev_MA_Shift, ::StdDev_Indi_StdDev_MA_Method,
-                         ::StdDev_Indi_StdDev_Applied_Price, ::StdDev_Indi_StdDev_Shift) {}
-};
-
 // Defines struct with default user strategy values.
 struct Stg_StdDev_Params_Defaults : StgParams {
   Stg_StdDev_Params_Defaults()
@@ -89,8 +82,10 @@ class Stg_StdDev : public Strategy {
    * Event on strategy's init.
    */
   void OnInit() {
-    Indi_StdDev_Params_Defaults indi_stddev_defaults;
-    IndiStdDevParams _indi_params(indi_stddev_defaults, Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
+    IndiStdDevParams _indi_params(::StdDev_Indi_StdDev_MA_Period, ::StdDev_Indi_StdDev_MA_Shift,
+                                  ::StdDev_Indi_StdDev_MA_Method, ::StdDev_Indi_StdDev_Applied_Price,
+                                  ::StdDev_Indi_StdDev_Shift);
+    _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
     SetIndicator(new Indi_StdDev(_indi_params));
   }
 
