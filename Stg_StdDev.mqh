@@ -62,7 +62,7 @@ class Stg_StdDev : public Strategy {
   Stg_StdDev(StgParams &_sparams, TradeParams &_tparams, ChartParams &_cparams, string _name = "")
       : Strategy(_sparams, _tparams, _cparams, _name) {}
 
-  static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL) {
+  static Stg_StdDev *Init(ENUM_TIMEFRAMES _tf = NULL, EA* _ea = NULL) {
     // Initialize strategy initial values.
     Stg_StdDev_Params_Defaults stg_stddev_defaults;
     StgParams _stg_params(stg_stddev_defaults);
